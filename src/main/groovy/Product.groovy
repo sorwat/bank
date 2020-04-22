@@ -1,7 +1,7 @@
 abstract class Product {
     BigDecimal balance
 //    InterestRate interestRate
-    String iban
+    public String iban
 //    Customer owner
     Long id
     Date dateOfOpening
