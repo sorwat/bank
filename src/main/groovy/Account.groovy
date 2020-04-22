@@ -1,5 +1,5 @@
 class Account  extends Product{
-    int number
+    //int number not needed id in product
     //BigDecimal debitCapability
     BigDecimal debit
 
