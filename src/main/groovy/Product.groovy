@@ -1,11 +1,11 @@
 abstract class Product {
     BigDecimal balance
-//    InterestRate interestRate
+    InterestRate interestRate
     public String iban
-//    Customer owner
+    Customer owner
     Long id
     Date dateOfOpening
-//    List<Operation> operationList
+    List<Operation> operationList
 
     // note: adds diff to current balance
     void updateBalance(BigDecimal diff){
