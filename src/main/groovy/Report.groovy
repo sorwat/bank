@@ -1,0 +1,3 @@
+interface Report {
+    File getPdf()
+}
