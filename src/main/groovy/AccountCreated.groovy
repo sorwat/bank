@@ -1,15 +1,15 @@
-class Creation extends Operation {
+class AccountCreated extends Operation {
     final String description
 
-    Creation(id) {
+    AccountCreated(/* Account account as argument in the future */ id) {
         super(OperationType.CREATION)
-        this.description = "PRODUCT CREATED" +
+        this.description = "ACCOUNT CREATED" +
                 "\nID: " + String.valueOf(id) +
                 "\nDate: " + executionDate.toString()
     }
 
     static main(args) {
-        Operation creation = new Creation(1)
+        Operation creation = new AccountCreated(1)
         println creation.description
     }
 }
