@@ -1,10 +1,23 @@
-class ListReportTest extends GroovyTestCase {
+import spock.lang.Specification
+import spock.lang.Unroll
 
-    void 'test ListReport should return file filled with filter'(){
+class ListReportTest extends Specification {
+
+    @Unroll
+    def 'test ListReport should return file filled with filter #filter'(){
+        when:
         Report report = new ListReport()
-        report.filter = ['te','st']
+        report.filter = filter
         File file = report.getPdf()
         println file.getText()
-        assert file.getText() == "te\r\nst\r\n"
+
+        then:
+        file.getText() == "te\r\nst\r\n"
+
+        cleanup:
+        file.delete()
+
+        where:
+        filter = ['te','st']
     }
 }

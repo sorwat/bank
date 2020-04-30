@@ -1,9 +1,22 @@
-class AggregationReportTest extends GroovyTestCase {
+import spock.lang.Specification
+import spock.lang.Unroll
 
-    void 'test AggregationReport should return file filled with attribute'(){
+class AggregationReportTest extends Specification {
+
+    @Unroll
+    def 'test AggregationReport should return file filled with attribute #attribute'() {
+        when:
         Report report = new AggregationReport()
-        report.attribute = 'test'
+        report.attribute = attribute
         File file = report.getPdf()
-        assert file.getText() == 'test'
+
+        then:
+        file.getText() == attribute
+
+        cleanup:
+        file.delete()
+
+        where:
+        attribute = 'test'
     }
 }
