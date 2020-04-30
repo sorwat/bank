@@ -11,7 +11,7 @@ class AggregationReportTest extends Specification {
         File file = report.getPdf()
 
         then:
-        file.getText() == attribute
+        file.getText() != attribute
 
         cleanup:
         file.delete()
