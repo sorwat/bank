@@ -1,28 +1,30 @@
-class Account  extends Product{
-    //int number not needed id in product
-    //BigDecimal debitCapability
+class Account extends Product {
     BigDecimal debit
+    List<Loan> loanList = new ArrayList<>()
 
-    def takeOutLoan(amount){
-        balance += amount
+    Account(def balance = 0, BigDecimal debit = 0, InterestRate interestRate = null, def owner = null) {
+        super(balance, interestRate, owner)
+        this.debit = debit
     }
 
-    def repayLoan(amount){
+    def takeOutLoan(amount, Loan, loan) {
+        balance += amount
+        this.loanList.add(loan)
+    }
+
+    def repayLoan(amount) {
         balance -= amount
     }
 
-    def debit(amount){
-        if(amount>balance && (balance-amount)>debit){
-            balance -=amount
-        }
-        else{
-            return "An operation cannot be performed for the account ${number}, the max debit is: ${debit}"
+    def debit(amount) {
+        if (amount > balance && (balance - amount) > debit) {
+            balance -= amount
+        } else {
+            return "An operation cannot be performed for the account ${id}, the max debit is: ${debit}"
         }
     }
 
-    void updateDebitCapability(BigDecimal DebitCapability){
-        if(DebitCapability != 0.00){
-            debit += DebitCapability
-        }
+    void updateDebitCapability(BigDecimal debitCapability) {
+        debit += debitCapability
     }
 }
