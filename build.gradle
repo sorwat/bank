@@ -15,6 +15,19 @@ dependencies { // [4]
     )
 }
 
+test {
+    testLogging {
+        events "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+
+        showStandardStreams = false
+    }
+}
+
 task fatjar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'Hello'
