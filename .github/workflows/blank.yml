@@ -32,6 +32,9 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
         
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+        
     # Caches dependencies
     - name: Cache Gradle packages
       uses: actions/cache@v1
