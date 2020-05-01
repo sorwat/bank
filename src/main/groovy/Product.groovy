@@ -1,8 +1,10 @@
+import InterestRate.InterestMechanismInterface
+
 import java.time.LocalDate
 
 abstract class Product {
     BigDecimal balance
-    InterestRate interestRate
+    InterestMechanismInterface interestRate
     String iban
     Customer owner
     Long id

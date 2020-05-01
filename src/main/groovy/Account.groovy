@@ -1,8 +1,10 @@
+import InterestRate.InterestMechanismInterface
+
 class Account extends Product {
     BigDecimal debit
     List<Loan> loanList = new ArrayList<>()
 
-    Account(def balance = 0, BigDecimal debit = 0, InterestRate interestRate = null, def owner = null) {
+    Account(def balance = 0, BigDecimal debit = 0, InterestMechanismInterface interestRate = null, def owner = null) {
         super(balance, interestRate, owner)
         this.debit = debit
     }
