@@ -1,3 +1,7 @@
+import InterestRate.InterestLinear
+import InterestRate.InterestMechanismInterface
+import InterestRate.InterestYearlyAward
+
 class Bank {
     BigDecimal nextId = 0
     ArrayList<Product> products = new ArrayList<>()
