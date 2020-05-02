@@ -1,7 +1,7 @@
-class Withdrawal extends Operation {
+class OperationWithdrawal extends Operation {
     final String description
 
-    Withdrawal(amount, accountId) {
+    OperationWithdrawal(amount, accountId) {
         super(OperationType.WITHDRAWAL)
         this.description = "WITHDRAWAL" +
                 "\nAccount ID: " + String.valueOf(accountId) +
@@ -9,8 +9,14 @@ class Withdrawal extends Operation {
                 "\nDate: " + executionDate.toString()
     }
 
+
     static main(args) {
-        Operation withdrawal = new Withdrawal(100.0, 1)
+        Operation withdrawal = new OperationWithdrawal(100.0, 1)
         println withdrawal.description
+    }
+
+    @Override
+    def execute() {
+        return null
     }
 }

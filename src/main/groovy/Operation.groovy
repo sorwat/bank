@@ -5,6 +5,8 @@ abstract class Operation {
 
     Operation(OperationType type) {
         this.type = type
-        this.executionDate = new Date()
     }
+
+    def abstract execute()
+
 }

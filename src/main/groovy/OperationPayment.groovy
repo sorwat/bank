@@ -1,7 +1,7 @@
-class Payment extends Operation {
+class OperationPayment extends Operation {
     final String description
 
-    Payment(amount, fromId, toId) {
+    OperationPayment(amount, fromId, toId) {
         super(OperationType.PAYMENT)
         this.description = "PAYMENT" +
                 "\nFrom: " + String.valueOf(fromId) +
@@ -11,7 +11,12 @@ class Payment extends Operation {
     }
 
     static main(args) {
-        Operation payment = new Payment(100.0, 1, 2)
+        Operation payment = new OperationPayment(100.0, 1, 2)
         println payment.description
+    }
+
+    @Override
+    def execute() {
+        return null
     }
 }
