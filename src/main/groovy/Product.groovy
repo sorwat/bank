@@ -1,4 +1,5 @@
 import InterestRate.InterestMechanismInterface
+import Operations.Operation
 
 import java.time.LocalDate
 

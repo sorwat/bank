@@ -1,6 +1,4 @@
-import InterestRate.InterestLinear
-import InterestRate.InterestMechanismInterface
-import InterestRate.InterestYearlyAward
+import Operations.Operation
 
 class Bank {
     BigDecimal nextId = 0
@@ -28,8 +26,7 @@ class Bank {
         Product newAccount = new Account(++nextId, iban)
         products.add(newAccount)
 
-        Operation op = new AccountCreated()
-        bankHistory.add(op)
+        executeOperation(new CreateAccount())
 
         return newAccount
         */
@@ -40,7 +37,7 @@ class Bank {
         Product newLoan = new Loan(++nextId, account, value)
         products.add(newLoan)
 
-        Operation op = new LoanCreated()
+        Operations.Operation op = new LoanCreated()
         bankHistory.add(op)
 
         return newLoan
@@ -52,7 +49,7 @@ class Bank {
         Product newDeposit = new Deposit(++nextId, account, value, interestRate)
         products.add(newDeposit)
 
-        Operation op = new DepositCreated()
+        Operations.Operation op = new DepositCreated()
         bankHistory.add(op)
 
         return newDeposit
@@ -64,9 +61,14 @@ class Bank {
         InterestRate newInterestRate = new InterestRate(rate)
         account.setInterestRate(newInterestRate)
 
-        Operation op = new ChangeOfInterestRate()
+        Operations.Operation op = new ChangeOfInterestRate()
         bankHistory.add(op)
          */
+    }
+
+    def void executeOperation(Operation operation) {
+        operation.execute()
+        bankHistory.add(operation)
     }
 
     static main(args) {

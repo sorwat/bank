@@ -1,7 +1,9 @@
-class OperationPayment extends Operation {
+package Operations
+
+class Payment extends Operation {
     final String description
 
-    OperationPayment(amount, fromId, toId) {
+    Payment(amount, fromId, toId) {
         super(OperationType.PAYMENT)
         this.description = "PAYMENT" +
                 "\nFrom: " + String.valueOf(fromId) +
@@ -11,7 +13,7 @@ class OperationPayment extends Operation {
     }
 
     static main(args) {
-        Operation payment = new OperationPayment(100.0, 1, 2)
+        Operation payment = new Payment(100.0, 1, 2)
         println payment.description
     }
 
