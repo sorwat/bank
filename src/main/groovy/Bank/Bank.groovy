@@ -4,57 +4,50 @@ import Bank.Products.*
 import Bank.Operations.*
 
 class Bank {
-    BigDecimal nextId = 0
-    ArrayList<Product> products = new ArrayList<>()
-    ArrayList<Operation> bankHistory = new ArrayList<>()
+    ArrayList<Product> products
+    ArrayList<Customer> customers
+    ArrayList<Operation> history
 
-    Bank() {}
-
-    def ArrayList<Product> getProducts(String iban) {
-        ArrayList<Product> userProducts = new ArrayList<>()
-        for (product in products) {
-            if (product.iban == iban) {
-                userProducts.add(product)
-            }
-        }
-        return userProducts
+    Bank() {
+        this.products  = new ArrayList<>()
+        this.customers = new ArrayList<>()
+        this.history   = new ArrayList<>()
     }
 
-    def void createPayment(Account from, Account to, float amount) {}
+    ArrayList<Product> getProducts(Customer customer) {
+        customer.products
+    }
 
-    def createReport() {}
+    void createPayment(Account from, Account to, float amount) {}
+    void createReport() {}
 
-    def Account createAccount(String iban) {
-        Product newAccount = new Account(++nextId, iban)
+    Account createAccount(Customer owner) {
+        Product newAccount = new Account(owner: owner)
+        executeOperation(new CreateAccountOperation(newAccount))
+
         products.add(newAccount)
-        executeOperation(new CreateAccount(newAccount.id))
-
         return newAccount
     }
 
-    def Loan createLoan(Account account, BigDecimal value) {
-        Product newLoan = new Loan(++nextId, account, value)
+    Loan createLoan(Account account, BigDecimal value) {
+        // Owner will be the same as the owner of the account, right?
+        Product newLoan = new Loan(account: account, balance: value, owner: account.owner)
+        executeOperation(new CreateLoanOperation(newLoan))
+
         products.add(newLoan)
-
-        executeOperation(new CreateLoan())
-        bankHistory.add(op)
-
         return newLoan
     }
 
-    def void /* Bank.Products.Deposit in the future? */ createDeposit(Account accont, BigDecimal value, intrestRate) {
-        /*
-        Bank.Products.Product newDeposit = new Bank.Products.Deposit(++nextId, account, value, interestRate)
+    Deposit createDeposit(Account account, BigDecimal value) {
+        // Owner will be the same as the owner of the account, right?
+        Product newDeposit = new Deposit(account: account, balance: value, owner: account.owner)
+        executeOperation(new CreateDepositOperation(newDeposit))
+
         products.add(newDeposit)
-
-        Bank.Operations.Operation op = new DepositCreated()
-        bankHistory.add(op)
-
         return newDeposit
-         */
     }
 
-    def void changeInterestRate(Account account, BigDecimal rate) {
+    void changeInterestRate(Account account, BigDecimal rate) {
         /*
         Bank.InterestRate newInterestRate = new Bank.InterestRate(rate)
         account.setInterestRate(newInterestRate)
@@ -64,9 +57,9 @@ class Bank {
          */
     }
 
-    def void executeOperation(Operation operation) {
+    void executeOperation(Operation operation) {
+        history.add(operation)
         operation.execute()
-        bankHistory.add(operation)
     }
 
     static main(args) {

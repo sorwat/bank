@@ -1,5 +1,5 @@
 package Bank.Operations
 
-interface Command {
+interface ICommand {
     def execute()
 }

@@ -1,5 +1,6 @@
 package Bank.Products
 
+import Bank.Customer
 import Bank.InterestRate.InterestMechanismInterface
 
 class Account extends Product {

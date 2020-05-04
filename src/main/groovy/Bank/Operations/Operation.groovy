@@ -1,7 +1,14 @@
 package Bank.Operations
 
-abstract class Operation implements Command {
+import java.time.LocalTime
+
+abstract class Operation implements ICommand {
     OperationType type
-    Date executionDate
+    LocalTime executionDate
     String description
+
+    Operation(OperationType type) {
+        this.type = type
+        this.executionDate = LocalTime.now()
+    }
 }
