@@ -1,3 +1,5 @@
+package Bank.Reports
+
 class ListReport implements Report {
 
     String[] filter

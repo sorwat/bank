@@ -1,4 +1,4 @@
-package Operations
+package Bank.Operations
 
 enum OperationType {
     WITHDRAWAL, PAYMENT, CREATE_ACCOUNT, CALCULATE_INTEREST, CHANGE_INTEREST_RATE, CREATE_DEPOSIT, CLOSE_DEPOSIT,

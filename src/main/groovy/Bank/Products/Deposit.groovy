@@ -1,8 +1,10 @@
-import InterestRate.InterestMechanismInterface
+package Bank.Products
+
+import Bank.InterestRate.InterestMechanismInterface
 
 class Deposit extends Product {
     def closeDeposit() {
-        super.finalize()
+        Product.finalize()
     }
 
     Deposit(def balance = 0.0G, InterestMechanismInterface interestRate, def owner) {

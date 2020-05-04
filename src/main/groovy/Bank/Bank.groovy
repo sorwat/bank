@@ -1,4 +1,7 @@
-import Operations.Operation
+package Bank
+
+import Bank.Products.*
+import Bank.Operations.*
 
 class Bank {
     BigDecimal nextId = 0
@@ -17,39 +20,34 @@ class Bank {
         return userProducts
     }
 
-    def void createPayment(from, to, amount) {}
+    def void createPayment(Account from, Account to, float amount) {}
 
     def createReport() {}
 
-    def void /* Account in the future? */ createAccount(String iban) {
-        /*
+    def Account createAccount(String iban) {
         Product newAccount = new Account(++nextId, iban)
         products.add(newAccount)
-
-        executeOperation(new CreateAccount())
+        executeOperation(new CreateAccount(newAccount.id))
 
         return newAccount
-        */
     }
 
-    def void /* Loan in the future? */ createLoan(Account account, BigDecimal value) {
-        /*
+    def Loan createLoan(Account account, BigDecimal value) {
         Product newLoan = new Loan(++nextId, account, value)
         products.add(newLoan)
 
-        Operations.Operation op = new LoanCreated()
+        executeOperation(new CreateLoan())
         bankHistory.add(op)
 
         return newLoan
-         */
     }
 
-    def void /* Deposit in the future? */ createDeposit(Account accont, BigDecimal value, intrestRate) {
+    def void /* Bank.Products.Deposit in the future? */ createDeposit(Account accont, BigDecimal value, intrestRate) {
         /*
-        Product newDeposit = new Deposit(++nextId, account, value, interestRate)
+        Bank.Products.Product newDeposit = new Bank.Products.Deposit(++nextId, account, value, interestRate)
         products.add(newDeposit)
 
-        Operations.Operation op = new DepositCreated()
+        Bank.Operations.Operation op = new DepositCreated()
         bankHistory.add(op)
 
         return newDeposit
@@ -58,10 +56,10 @@ class Bank {
 
     def void changeInterestRate(Account account, BigDecimal rate) {
         /*
-        InterestRate newInterestRate = new InterestRate(rate)
+        Bank.InterestRate newInterestRate = new Bank.InterestRate(rate)
         account.setInterestRate(newInterestRate)
 
-        Operations.Operation op = new ChangeOfInterestRate()
+        Bank.Operations.Operation op = new ChangeOfInterestRate()
         bankHistory.add(op)
          */
     }

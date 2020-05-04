@@ -1,3 +1,5 @@
+package Bank.Reports
+
 class AggregationReport implements Report {
 
     String attribute

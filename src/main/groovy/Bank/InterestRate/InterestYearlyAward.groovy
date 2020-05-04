@@ -1,4 +1,4 @@
-package InterestRate
+package Bank.InterestRate
 
 class InterestYearlyAward implements InterestMechanismInterface {
 

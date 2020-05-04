@@ -1,5 +1,8 @@
-import InterestRate.InterestMechanismInterface
-import Operations.Operation
+package Bank.Products
+
+import Bank.Customer
+import Bank.InterestRate.InterestMechanismInterface
+import Bank.Operations.Operation
 
 import java.time.LocalDate
 

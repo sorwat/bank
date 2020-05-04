@@ -1,11 +1,13 @@
-package Operations
+package Bank.Operations
 
-class CreateAccount extends Operation {
+class CreateLoan extends Operation {
+    int accountId
 
-    CreateAccount(acount) {}
+    CreateLoan(int id) {
+        accountId = id
+    }
 
     static main(args) {
-
         Operation o = new CreateAccount(1)
         o.execute()
         println(o.description)
@@ -16,7 +18,7 @@ class CreateAccount extends Operation {
         type = OperationType.CREATE_ACCOUNT;
         executionDate = new Date()
         description = "ACCOUNT CREATED" +
-                "\nID: " + String.valueOf(id) +
+                "\nID: " + String.valueOf(accountId) +
                 "\nDate: " + executionDate.toString()
 
     }

@@ -1,4 +1,4 @@
-package Operations
+package Bank.Operations
 
 class Payment extends Operation {
     final String description

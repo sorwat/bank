@@ -1,4 +1,6 @@
-import InterestRate.InterestMechanismInterface
+package Bank.Products
+
+import Bank.InterestRate.InterestMechanismInterface
 
 class Loan extends Product {
     Account account
