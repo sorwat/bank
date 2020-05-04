@@ -1,5 +1,5 @@
-import InterestRate.InterestLinear
-import InterestRate.InterestYearlyAward
+import Bank.InterestRate.InterestLinear
+import Bank.InterestRate.InterestYearlyAward
 import spock.lang.Specification
 import spock.lang.Unroll
 

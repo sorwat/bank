@@ -1,4 +1,9 @@
-import InterestRate.InterestMechanismInterface
+package Bank.Products
+
+import Bank.Customer
+import Bank.Generator
+import Bank.InterestRate.InterestMechanismInterface
+import Bank.Operations.Operation
 
 import java.time.LocalDate
 
@@ -9,29 +14,20 @@ abstract class Product {
     Customer owner
     Long id
     LocalDate dateOfOpening
-    List<Operation> operationList = new ArrayList<>()
+    List<Operation> hitory
 
     Product(def balance, def interestRate, def owner) {
         this.balance = balance
         this.interestRate = interestRate
-        this.iban = generateIban()
+        this.iban = Generator.generateIban()
         this.owner = owner
-        this.id = generateId()
+        this.id = Generator.generateId()
         this.dateOfOpening = LocalDate.now()
+        this.hitory = new ArrayList<>()
     }
 
     // note: adds diff to current balance
     void updateBalance(BigDecimal diff) {
         balance += diff
-    }
-
-    static String generateIban() {
-        'PL' + new Random().with {
-            (1..26).collect { nextInt(10) }.join()
-        }
-    }
-
-    static long generateId() {
-        0 //TODO implement
     }
 }

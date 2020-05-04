@@ -1,10 +1,12 @@
+import Bank.Reports.AggregationReport
+import Bank.Reports.Report
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class AggregationReportTest extends Specification {
 
     @Unroll
-    def 'test AggregationReport should return file filled with attribute #attribute'() {
+    def 'test Bank.Reports.AggregationReport should return file filled with attribute #attribute'() {
         when:
         Report report = new AggregationReport()
         report.attribute = attribute
