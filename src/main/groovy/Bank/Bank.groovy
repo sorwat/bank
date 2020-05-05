@@ -44,12 +44,12 @@ class Bank {
     }
 
     void createLoan(Account account, BigDecimal amount) {
-        // Owner will be the same as the owner of the account, right?
+        // Owner will be the same as the owner of the account.
         executeOperation(new CreateLoanOperation(account, amount))
     }
 
     void createDeposit(Account account, BigDecimal amount) {
-        // Owner will be the same as the owner of the account, right?
+        // Owner will be the same as the owner of the account.
         try {
             executeOperation(new CreateDepositOperation(account, amount))
         } catch(Exception e) {
@@ -68,7 +68,9 @@ class Bank {
     }
 
     void executeOperation(Operation operation) {
+        // exception can be thrown inside this function
         operation.execute()
+        // TODO: it has to check if the operation succeeded before adding to the history
         history.add(operation)
     }
 

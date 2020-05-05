@@ -15,7 +15,7 @@ class CreateLoanOperation extends Operation {
 
     @Override
     def execute() {
-        Loan loan = new Loan(balance: amount, account: account, owner: account.owner)
+        Loan loan = new Loan(account: account, balance: amount)
         description = "LOAN CREATED" +
                 "\nLOAN_ID: " + String.valueOf(loan.id) +
                 "\nAmount:  " + String.valueOf(loan.balance) +

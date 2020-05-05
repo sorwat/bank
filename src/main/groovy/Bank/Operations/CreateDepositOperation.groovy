@@ -16,9 +16,9 @@ class CreateDepositOperation extends Operation {
     @Override
     def execute() {
         if (account.balance + account.debit < amount) {
-            throw new Exception("Not enough money!")
+            throw new Exception("Not enough money to create that Deposit!")
         } else {
-            Deposit deposit = new Deposit(owner: account.owner, account: account, balance: amount)
+            Deposit deposit = new Deposit(account: account, balance: amount)
             description = "DEPOSIT CREATED" +
                     "\nDEPOSIT_ID: " + String.valueOf(deposit.id) +
                     "\nAmount:     " + String.valueOf(deposit.balance) +
