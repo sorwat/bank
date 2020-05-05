@@ -1,23 +1,31 @@
 package Bank.Operations
 
+import Bank.Products.Account
 import Bank.Products.Loan
 
 class CreateLoanOperation extends Operation {
-    Loan loan
+    Account account
+    BigDecimal amount
 
-    CreateLoanOperation(Loan loan) {
+    CreateLoanOperation(Account account, BigDecimal amount) {
         super(OperationType.CREATE_LOAN)
-        this.loan = loan
+        this.account = account
+        this.amount = amount
     }
 
     @Override
     def execute() {
+        Loan loan = new Loan(balance: amount, account: account, owner: account.owner)
         description = "LOAN CREATED" +
                 "\nLOAN_ID: " + String.valueOf(loan.id) +
                 "\nAmount:  " + String.valueOf(loan.balance) +
                 "\nDate:    " + executionDate.toString()
 
+        // get the money
+        account.updateBalance(amount)
+
+        // add to the history
         loan.account.hitory.add(this)
-        loan.account.owner.products.add(loan)
+        loan.owner.products.add(this)
     }
 }
