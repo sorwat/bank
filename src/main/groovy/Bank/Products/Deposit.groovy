@@ -10,8 +10,8 @@ class Deposit extends Product {
         Product.finalize()
     }
 
-    Deposit(def balance = 0.0G, InterestMechanismInterface interestRate = null, Customer owner = null, Account account) {
-        super(balance, interestRate, owner)
+    Deposit(def balance, InterestMechanismInterface interestRate = null, Account account) {
+        super(balance, interestRate, account.owner)
         this.account = account
     }
 }

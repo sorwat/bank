@@ -4,12 +4,10 @@ import Bank.Products.*
 import Bank.Operations.*
 
 class Bank {
-    ArrayList<Product> products
     ArrayList<Customer> customers
     ArrayList<Operation> history
 
     Bank() {
-        this.products  = new ArrayList<>()
         this.customers = new ArrayList<>()
         this.history   = new ArrayList<>()
     }
@@ -18,33 +16,45 @@ class Bank {
         customer.products
     }
 
-    void createPayment(Account from, Account to, float amount) {}
+    void createPayment(Account from, Account to, BigDecimal amount) {
+        // if there are enough founds. Do we even check this here?
+        // Should it rise an exception here if there are not enough founds on the account?
+        // Or it will be on the front-end side?
+        try {
+            executeOperation(new PaymentOperation(from, to, amount))
+        } catch(Exception e) {
+            println("Exception: ${e}")
+        }
+    }
+
+    void createWithdrawal(Account account, BigDecimal amount) {
+        // if there are enough founds. Same as above in the create Payment?
+        // Do we check this here?
+        try {
+            executeOperation(new WithdrawalOperation(account, amount))
+        } catch(Exception e) {
+            println("Exception: ${e}")
+        }
+    }
+
     void createReport() {}
 
-    Account createAccount(Customer owner) {
-        Product newAccount = new Account(owner: owner)
-        executeOperation(new CreateAccountOperation(newAccount))
-
-        products.add(newAccount)
-        return newAccount
+    void createAccount(Customer owner) {
+        executeOperation(new CreateAccountOperation(owner))
     }
 
-    Loan createLoan(Account account, BigDecimal value) {
-        // Owner will be the same as the owner of the account, right?
-        Product newLoan = new Loan(account: account, balance: value, owner: account.owner)
-        executeOperation(new CreateLoanOperation(newLoan))
-
-        products.add(newLoan)
-        return newLoan
+    void createLoan(Account account, BigDecimal amount) {
+        // Owner will be the same as the owner of the account.
+        executeOperation(new CreateLoanOperation(account, amount))
     }
 
-    Deposit createDeposit(Account account, BigDecimal value) {
-        // Owner will be the same as the owner of the account, right?
-        Product newDeposit = new Deposit(account: account, balance: value, owner: account.owner)
-        executeOperation(new CreateDepositOperation(newDeposit))
-
-        products.add(newDeposit)
-        return newDeposit
+    void createDeposit(Account account, BigDecimal amount) {
+        // Owner will be the same as the owner of the account.
+        try {
+            executeOperation(new CreateDepositOperation(account, amount))
+        } catch(Exception e) {
+            println("Exception: ${e}")
+        }
     }
 
     void changeInterestRate(Account account, BigDecimal rate) {
@@ -58,8 +68,10 @@ class Bank {
     }
 
     void executeOperation(Operation operation) {
-        history.add(operation)
+        // exception can be thrown inside this function
         operation.execute()
+        // TODO: it has to check if the operation succeeded before adding to the history
+        history.add(operation)
     }
 
     static main(args) {

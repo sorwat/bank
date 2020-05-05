@@ -1,25 +1,25 @@
 package Bank.Operations
 
+import Bank.Customer
 import Bank.Products.Account
 
-import java.time.LocalTime
-
 class CreateAccountOperation extends Operation {
-    int id
+    Customer owner
+    Account account
 
-    CreateAccountOperation(Account account) {
+    CreateAccountOperation(Customer owner) {
         super(OperationType.CREATE_ACCOUNT)
-        this.id = account.id
-
-        account.hitory.add(this)
-        account.owner.products.add(account)
+        this.owner = owner
     }
 
     @Override
     def execute() {
+        account = new Account(owner)
         description = "ACCOUNT CREATED" +
-                "\nID:   " + String.valueOf(id) +
+                "\nID:   " + String.valueOf(account.id) +
                 "\nDate: " + executionDate.toString()
-    }
 
+        account.history.add(this)
+        account.owner.products.add(account)
+    }
 }

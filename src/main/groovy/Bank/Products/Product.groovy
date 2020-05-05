@@ -14,7 +14,7 @@ abstract class Product {
     Customer owner
     Long id
     LocalDate dateOfOpening
-    List<Operation> hitory
+    List<Operation> history
 
     Product(def balance, def interestRate, def owner) {
         this.balance = balance
@@ -23,7 +23,7 @@ abstract class Product {
         this.owner = owner
         this.id = Generator.generateId()
         this.dateOfOpening = LocalDate.now()
-        this.hitory = new ArrayList<>()
+        this.history = new ArrayList<>()
     }
 
     // note: adds diff to current balance

@@ -1,3 +1,5 @@
+package Reports
+
 import Bank.Reports.AggregationReport
 import Bank.Reports.Report
 import spock.lang.Specification
