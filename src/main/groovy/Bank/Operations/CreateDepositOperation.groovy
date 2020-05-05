@@ -28,7 +28,7 @@ class CreateDepositOperation extends Operation {
             account.updateBalance(-amount)
 
             // add to the history
-            deposit.account.hitory.add(this)
+            deposit.account.history.add(this)
             deposit.owner.products.add(this)
         }
     }

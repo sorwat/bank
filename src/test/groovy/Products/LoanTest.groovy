@@ -1,20 +1,22 @@
+package Products
+
 import Bank.Customer
 import Bank.Products.Account
-import Bank.Products.Deposit
+import Bank.Products.Loan
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class DepositTest extends Specification {
+class LoanTest extends Specification {
 
     @Unroll
-    def 'test Deposit should have the same owner as provided Account'() {
+    def 'test Loan should have the same owner as provided Account'() {
         when:
         Customer customer = new Customer()
         Account account = new Account(customer)
-        Deposit deposit = new Deposit(amount, account)
+        Loan loan = new Loan(amount, account)
 
         then:
-        account.owner == deposit.owner
+        account.owner == loan.owner
 
         where:
         amount = 100

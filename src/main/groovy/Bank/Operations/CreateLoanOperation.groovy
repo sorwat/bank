@@ -25,7 +25,7 @@ class CreateLoanOperation extends Operation {
         account.updateBalance(amount)
 
         // add to the history
-        loan.account.hitory.add(this)
+        loan.account.history.add(this)
         loan.owner.products.add(this)
     }
 }

@@ -1,3 +1,5 @@
+package Reports
+
 import Bank.InterestRate.InterestLinear
 import Bank.InterestRate.InterestYearlyAward
 import spock.lang.Specification

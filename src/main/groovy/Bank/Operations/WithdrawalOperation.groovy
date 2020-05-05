@@ -24,7 +24,7 @@ class WithdrawalOperation extends Operation {
 
             account.updateBalance(-amount)
 
-            account.hitory.add(this)
+            account.history.add(this)
         }
     }
 }

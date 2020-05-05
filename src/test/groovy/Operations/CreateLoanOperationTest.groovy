@@ -1,0 +1,4 @@
+package Operations
+
+class CreateLoanOperationTest {
+}

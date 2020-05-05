@@ -1,3 +1,5 @@
+package Products
+
 import Bank.Customer
 import Bank.Products.Account
 import spock.lang.Specification

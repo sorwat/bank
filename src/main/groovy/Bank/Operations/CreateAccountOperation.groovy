@@ -5,6 +5,7 @@ import Bank.Products.Account
 
 class CreateAccountOperation extends Operation {
     Customer owner
+    Account account
 
     CreateAccountOperation(Customer owner) {
         super(OperationType.CREATE_ACCOUNT)
@@ -13,12 +14,12 @@ class CreateAccountOperation extends Operation {
 
     @Override
     def execute() {
-        Account account = new Account(owner)
+        account = new Account(owner)
         description = "ACCOUNT CREATED" +
                 "\nID:   " + String.valueOf(account.id) +
                 "\nDate: " + executionDate.toString()
 
-        account.hitory.add(this)
+        account.history.add(this)
         account.owner.products.add(account)
     }
 }

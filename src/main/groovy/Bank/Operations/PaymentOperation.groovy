@@ -28,8 +28,8 @@ class PaymentOperation extends Operation {
             from.updateBalance(-amount)
             to.updateBalance(amount)
 
-            from.hitory.add(this)
-            to.hitory.add(this)
+            from.history.add(this)
+            to.history.add(this)
         }
     }
 }
