@@ -74,7 +74,12 @@ class Bank {
         history.add(operation)
     }
 
-    static main(args) {
+    ArrayList<PaymentOperation> getInterBankPayments() {
+        history.collect {it.type == OperationType.PAYMENT} as ArrayList<PaymentOperation>
+        //TODO: get only not executed and interbank
+    }
 
+    void handleIncomingInterbankPayment(PaymentOperation paymentOperation) {
+        //TODO implement
     }
 }
