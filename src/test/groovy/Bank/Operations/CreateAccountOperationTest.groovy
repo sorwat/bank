@@ -1,9 +1,6 @@
-package Operations
+package Bank.Operations
 
 import Bank.Customer
-import Bank.Operations.CreateAccountOperation
-import Bank.Operations.Operation
-import Bank.Operations.OperationType
 import spock.lang.Specification
 import spock.lang.Unroll
 

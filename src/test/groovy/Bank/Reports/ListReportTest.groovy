@@ -1,14 +1,13 @@
-package Reports
+package Bank.Reports
 
-import Bank.Reports.ListReport
-import Bank.Reports.Report
+
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class ListReportTest extends Specification {
 
     @Unroll
-    def 'test Bank.Reports.ListReport should return file filled with filter #filter'(){
+    def 'test Bank.Bank.Reports.ListReport should return file filled with filter #filter'(){
         when:
         Report report = new ListReport()
         report.filter = filter
