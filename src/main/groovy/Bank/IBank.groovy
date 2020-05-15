@@ -1,0 +1,4 @@
+package Bank
+
+interface IBank {
+}
