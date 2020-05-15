@@ -3,44 +3,23 @@ package Bank
 
 import Bank.Operations.PaymentOperation
 
-class InterBankPaymentAgency {
-    ArrayList<Bank> banks = new ArrayList<>()
+class InterBankPaymentAgency implements IInterBankPaymentAgency {
     ArrayList<PaymentOperation> payments = new ArrayList<>()
 
-
-    InterBankPaymentAgency() {
+    @Override
+    void storePayments(List<PaymentOperation> payments) {
+        this.payments.addAll(payments)
     }
 
-    // performed periodically with trigger
-    private void performPeriodicalJobs() {
-        collectPayments()
-        sortPayments() //TODO refactor or get rid of, seems pointless now
-        sendPayments()
+    @Override
+    List<PaymentOperation> retrievePayments(IBank bank) {
+        def payments = getPaymentsByBank(bank)
+        this.payments.removeAll(payments)
+        return payments
     }
 
-    private void collectPayments() {
-        payments.addAll(
-                banks.inject([]) { result, bank ->
-                    result.addAll(bank.getInterBankPayments())
-                    result
-                })
-    }
-
-    private void sortPayments() {
-        payments.sort { it.executionDate }
-    }
-
-    private void sendPayments() {
-        payments.forEach { payment -> sendPayment(payment) }
-    }
-
-    private void sendPayment(PaymentOperation payment) {
-        getBank(payment).handleIncomingInterbankPayment(payment)
-        payments.remove(payment)
-    }
-
-    //TODO implement: accordint to destination (PaymentOperation.to) return payment destination bank
-    private Bank getBank(PaymentOperation paymentOperation) {
-        banks.get(0)
+    //TODO implement getting payments by destination bank (SWIFT?)
+    List<PaymentOperation> getPaymentsByBank(IBank bank) {
+        this.payments.collect()
     }
 }
