@@ -20,15 +20,4 @@ class Account extends Product {
         balance -= amount
     }
 
-    def debit(amount) {
-        if (amount > balance && (balance - amount) > debit) {
-            balance -= amount
-        } else {
-            return "An operation cannot be performed for the account ${id}, the max debit is: ${debit}"
-        }
-    }
-
-    void updateDebitCapability(BigDecimal debitCapability) {
-        debit += debitCapability
-    }
 }
