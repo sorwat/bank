@@ -1,8 +1,6 @@
-package Products
+package Bank.Products
 
 import Bank.Customer
-import Bank.Products.Account
-import Bank.Products.Deposit
 import spock.lang.Specification
 import spock.lang.Unroll
 

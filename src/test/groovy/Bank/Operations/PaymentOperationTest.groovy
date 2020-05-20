@@ -1,10 +1,6 @@
-package Operations
+package Bank.Operations
 
 import Bank.Customer
-import Bank.Operations.CreateAccountOperation
-import Bank.Operations.Operation
-import Bank.Operations.OperationType
-import Bank.Operations.PaymentOperation
 import Bank.Products.Account
 import Bank.Products.Product
 import spock.lang.Specification

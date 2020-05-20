@@ -1,15 +1,16 @@
 package Bank
 
-import Bank.Products.*
 import Bank.Operations.*
+import Bank.Products.Account
+import Bank.Products.Product
 
-class Bank {
-    ArrayList<Customer> customers
-    ArrayList<Operation> history
+class Bank implements IBank {
+    private InterBankPaymentAgency paymentAgency
+    ArrayList<Customer> customers = new ArrayList<>()
+    ArrayList<Operation> history = new ArrayList<>()
 
-    Bank() {
-        this.customers = new ArrayList<>()
-        this.history   = new ArrayList<>()
+    Bank(InterBankPaymentAgency paymentAgency) {
+        this.paymentAgency = paymentAgency
     }
 
     ArrayList<Product> getProducts(Customer customer) {
@@ -22,7 +23,7 @@ class Bank {
         // Or it will be on the front-end side?
         try {
             executeOperation(new PaymentOperation(from, to, amount))
-        } catch(Exception e) {
+        } catch (Exception e) {
             println("Exception: ${e}")
         }
     }
@@ -32,7 +33,7 @@ class Bank {
         // Do we check this here?
         try {
             executeOperation(new WithdrawalOperation(account, amount))
-        } catch(Exception e) {
+        } catch (Exception e) {
             println("Exception: ${e}")
         }
     }
@@ -52,7 +53,7 @@ class Bank {
         // Owner will be the same as the owner of the account.
         try {
             executeOperation(new CreateDepositOperation(account, amount))
-        } catch(Exception e) {
+        } catch (Exception e) {
             println("Exception: ${e}")
         }
     }
@@ -72,9 +73,5 @@ class Bank {
         operation.execute()
         // TODO: it has to check if the operation succeeded before adding to the history
         history.add(operation)
-    }
-
-    static main(args) {
-
     }
 }
