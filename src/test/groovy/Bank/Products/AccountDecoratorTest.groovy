@@ -1,4 +1,4 @@
-package Products
+package Bank.Products
 
 import Bank.Customer
 import Bank.Products.Account
