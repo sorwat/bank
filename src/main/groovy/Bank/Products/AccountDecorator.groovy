@@ -15,4 +15,11 @@ class AccountDecorator {
             overdraft_balance -= amount
         }
     }
+
+    AccountDecorator(def account, debit_, overdraft_balnce){
+        //super(account)
+        this.account = account
+        this.debit_ = debit_
+        this.overdraft_balance = overdraft_balnce
+    }
 }

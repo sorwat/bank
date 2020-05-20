@@ -12,7 +12,7 @@ class AccountDecoratorTest extends Specification{
         when:
         Customer customer = new Customer()
         Account account = new Account(0, customer)
-        AccountDecorator accountDecorator = new AccountDecorator(account: account)
+        AccountDecorator accountDecorator = new AccountDecorator(account,0,0)
         accountDecorator.updateDebitCapability(111);
 
         then:
