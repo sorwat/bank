@@ -16,6 +16,6 @@ class AccountDecoratorTest extends Specification{
         accountDecorator.updateDebitCapability(111);
 
         then:
-        accountDecorator.debit == -111.00
+        accountDecorator.debit_ == -111.00
     }
 }
