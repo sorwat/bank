@@ -1,3 +1,5 @@
+package Bank
+
 import Bank.Customer
 import spock.lang.Specification
 import spock.lang.Unroll
