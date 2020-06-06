@@ -6,4 +6,5 @@ build/
 .settings/
 .vscode/
 bin/
+out/
 

@@ -14,7 +14,7 @@ class WithdrawalOperation extends Operation {
 
     @Override
     def execute() {
-        if (account.balance + account.debit >= amount) {
+        if (account.balance + account.debit < amount) {
             throw new Exception("Not enough money!")
         } else {
             description = "WITHDRAWAL" +

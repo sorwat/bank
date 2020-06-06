@@ -1,13 +1,22 @@
 package Bank
 
-import Bank.Operations.*
+
+import Bank.Operations.CreateAccountOperation
+import Bank.Operations.CreateDepositOperation
+import Bank.Operations.CreateLoanOperation
+import Bank.Operations.Operation
 import Bank.Products.Account
 import Bank.Products.Product
+import Bank.Transactions.ChargeInterestRate.ChargeInterestRateRequest
+import Bank.Transactions.CreatePayment.CreatePaymentRequest
+import Bank.Transactions.CreateWithdrawal.CreateWithdrawalRequest
+import Bank.Transactions.TransactionService
 
 class Bank implements IBank {
     private InterBankPaymentAgency paymentAgency
     ArrayList<Customer> customers = new ArrayList<>()
     ArrayList<Operation> history = new ArrayList<>()
+    private TransactionService transactionService = new TransactionService()
 
     Bank(InterBankPaymentAgency paymentAgency) {
         this.paymentAgency = paymentAgency
@@ -22,7 +31,7 @@ class Bank implements IBank {
         // Should it rise an exception here if there are not enough founds on the account?
         // Or it will be on the front-end side?
         try {
-            executeOperation(new PaymentOperation(from, to, amount))
+            transactionService.createTransaction(new CreatePaymentRequest(from: from, to: to, amount: amount))
         } catch (Exception e) {
             println("Exception: ${e}")
         }
@@ -32,7 +41,15 @@ class Bank implements IBank {
         // if there are enough founds. Same as above in the create Payment?
         // Do we check this here?
         try {
-            executeOperation(new WithdrawalOperation(account, amount))
+            transactionService.createTransaction(new CreateWithdrawalRequest(account: account, amount: amount))
+        } catch (Exception e) {
+            println("Exception: ${e}")
+        }
+    }
+
+    void chargeInterestRate(Account account, BigDecimal amount) {
+        try {
+            transactionService.createTransaction(new ChargeInterestRateRequest(account: account, amount: amount))
         } catch (Exception e) {
             println("Exception: ${e}")
         }
